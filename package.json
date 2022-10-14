@@ -1,5 +1,5 @@
 {
-  "name": "PosMovil-V2",
+  "name": "PosMovil",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
@@ -15,17 +15,33 @@
   "dependencies": {
     "@angular/common": "^14.0.0",
     "@angular/core": "^14.0.0",
+    "@angular/fire": "^7.4.1",
     "@angular/forms": "^14.0.0",
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
+    "@awesome-cordova-plugins/firebase": "^5.46.0",
+    "@awesome-cordova-plugins/sqlite": "^5.45.0",
+    "@capacitor/android": "4.3.0",
     "@capacitor/app": "4.0.1",
-    "@capacitor/core": "4.3.0",
+    "@capacitor/core": "^4.3.0",
     "@capacitor/haptics": "4.0.1",
+    "@capacitor/ios": "^4.2.0",
     "@capacitor/keyboard": "4.0.1",
     "@capacitor/status-bar": "4.0.1",
+    "@ionic-native/core": "^5.36.0",
+    "@ionic-native/sqlite": "^5.36.0",
+    "@ionic-native/sqlite-porter": "^5.36.0",
     "@ionic/angular": "^6.1.9",
+    "@ionic/storage": "^3.0.6",
+    "@ionic/storage-angular": "^3.0.6",
+    "angular": "^1.8.3",
+    "animate.css": "^4.1.1",
+    "cordova-plugin-firebase": "^2.0.5",
+    "cordova-sqlite-storage": "^6.0.0",
+    "firebase": "^9.12.1",
     "ionicons": "^6.0.3",
+    "ng2-search-filter": "^0.5.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
@@ -40,13 +56,20 @@
     "@angular/compiler": "^14.0.0",
     "@angular/compiler-cli": "^14.0.0",
     "@angular/language-service": "^14.0.0",
-    "@capacitor/cli": "4.3.0",
+    "@capacitor/cli": "^4.3.0",
     "@ionic/angular-toolkit": "^6.0.0",
+    "@ionic/lab": "3.2.13",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "5.3.0",
     "@typescript-eslint/parser": "5.3.0",
+    "cordova-android": "^10.1.2",
+    "cordova-plugin-device": "2.0.2",
+    "cordova-plugin-ionic-keyboard": "^2.0.5",
+    "cordova-plugin-ionic-webview": "^5.0.0",
+    "cordova-plugin-splashscreen": "5.0.2",
+    "cordova-plugin-statusbar": "^2.4.2",
     "eslint": "^7.6.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsdoc": "30.7.6",
@@ -61,7 +84,22 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
-    "typescript": "~4.7.3"
+    "typescript": "~4.7.3",
+    "uk.co.workingedge.cordova.plugin.sqliteporter": "^1.1.1"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "cordova": {
+    "plugins": {
+      "cordova-sqlite-storage": {},
+      "uk.co.workingedge.cordova.plugin.sqliteporter": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic-keyboard": {}
+    },
+    "platforms": [
+      "android"
+    ]
+  }
 }

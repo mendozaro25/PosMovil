@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>Productos</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <ion-searchbar
+    placeholder="Buscar..."
+    [(ngModel)]="searchTerm"
+    showCancelButton="focus"
+    cancelButtonText="Borrar"
+    animated
+    color="primary"
+  >
+  </ion-searchbar>
+
+  <ion-label class="number">{{products.length}}</ion-label
+  ><ion-label> productos encontrados</ion-label>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="updateListProducts()">
+      <ion-icon name="sync"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-item lines="full" *ngFor="let p of products | filter: searchTerm">
+    <ion-label class="name_product">
+      {{p.product_name}}
+      <ion-label class="category">
+        {{p.category_name}}
+        <ion-label class="price"> S/. {{p.retail_price}} </ion-label>
+      </ion-label>
+    </ion-label>
+    <ion-button
+      color="primary"
+      fill="clear"
+      [routerLink]="['../products', p.code]"
+    >
+      <ion-icon slot="icon-only" name="caret-forward-outline"> </ion-icon>
+    </ion-button>
+  </ion-item>
+</ion-content>

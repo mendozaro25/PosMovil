@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>Cotizaciones</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <ion-segment
+    (ionChange)="segmentChanged($event)"
+    [(ngModel)]="segmentValue"
+    class="ion-padding-horizontal"
+  >
+    <ion-segment-button value="1">
+      <ion-label>Cotizar</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="2">
+      <ion-label>Agregar Productos</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- QUOTE ITEMS SEGMENTVALUE (1)-->
+  <div *ngIf="segmentValue === '1'">
+    <div>
+      <h3>Datos Generales</h3>
+
+      <form [formGroup]="quoties" (ngSubmit)="agregar()">
+        <ion-item lines="none">
+          <ion-label class="typeDocument">Tipo de documento (*)</ion-label>
+          <ion-select placeholder="ejm. DNI" formControlName="typeDocument">
+            <ion-select-option value="RUC">RUC</ion-select-option>
+            <ion-select-option value="DNI">DNI</ion-select-option>
+            <ion-select-option value="OTROS">OTROS</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item lines="none" class="number">
+          <ion-label position="stacked">Número del documento (*)</ion-label>
+          <ion-input
+            type="number"
+            placeholder="ejm. 72558745"
+            formControlName="numberDocument"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="nameOFsocial" counter="true">
+          <ion-label position="stacked">Nombre / Razón Social (*)</ion-label>
+          <ion-input
+            type="text"
+            placeholder="ejm. Gran Power SAC"
+            maxlength="30"
+            formControlName="nameSocial"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item lines="none" class="phone" counter="true">
+          <ion-label position="stacked">Celular (*)</ion-label>
+          <ion-input
+            type="number"
+            placeholder="ejm. 985614758"
+            maxlength="9"
+            formControlName="phone"
+          ></ion-input>
+        </ion-item>
+        
+        <ion-button
+          expand="full"
+          shape="round"
+          color="primary"
+          type="submit"
+          [disabled]="!quoties.valid"
+        >
+          <ion-text>Guardar</ion-text>
+        </ion-button>
+      </form>
+    </div>
+    <!-- END NULL QUOTE INPUTS-->
+  </div>
+  <!-- QUOTE INPUTS -->
+
+  <!-- QUOTE ITEMS SEGMENTVALUE (2)-->
+  <div *ngIf="segmentValue === '2'">
+    <!-- PRICE TOTAL -->
+    <div *ngIf="(quoteItems$|async).length">
+      <h3 class="prices">
+        Precio Total:
+        <span><sup>s/.</sup>{{totalPrice$|async|number:'1.2'}}</span>
+      </h3>
+    </div>
+    <!-- ITEMS -->
+    <ion-list lines="none">
+      <div *ngFor="let item of quoteItems$|async">
+        <ion-item-sliding>
+          <ion-item>
+            <app-item-quote
+              [item]="item"
+              (increase)="onIncrease(item)"
+              (decrease)="onDecrease(item)"
+            ></app-item-quote>
+          </ion-item>
+          <!-- REMOVE -->
+          <ion-item-options side="end">
+            <ion-item-option (click)="removeFromQuote(item)">
+              <ion-icon name="trash-outline" size="large"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </div>
+    </ion-list>
+    <!-- NULL QUOTE ITEMS-->
+    <div *ngIf="!(quoteItems$|async).length">
+      <h3 class="title">No hay productos para cotizar...</h3>
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button routerLink="../products">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </div>
+    <!-- END NULL QUOTE ITEMS-->
+  </div>
+</ion-content>

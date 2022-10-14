@@ -1,0 +1,25 @@
+ion-content{
+  height: 100%;
+  width: 100%;
+  --ion-background-color: #EFDEBD;
+  ion-grid{
+    ion-col{
+      ion-img{
+        height: 300px;
+        width: 265px;
+        margin: auto;
+        margin-top: 32%;
+        margin-bottom: 20%;
+      }
+    }
+  }
+  ion-button{
+    width: 80%;
+    margin: auto;
+    ion-text{
+      font-family: system-ui;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+  }
+}

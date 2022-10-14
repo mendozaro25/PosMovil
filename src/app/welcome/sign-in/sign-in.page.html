@@ -1,0 +1,71 @@
+<ion-content [fullscreen]="true">
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button
+        defaultHref="/welcome" text="">
+        </ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-row>
+    <ion-col>
+      <ion-img src="../../../assets/icon/logo-granpower-negro.png"></ion-img>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+<ion-footer>
+  <ion-list lines="none">
+    <ion-list-header class="ion-margin">
+      <ion-label> Iniciar Sesión </ion-label>
+    </ion-list-header>
+
+    <ion-item-group class="ion-margin-horinzontal">
+      <form [formGroup]="userForm" (ngSubmit)="signIn(userForm.value)">
+
+        <div class="ion-margin-vertical">
+          <ion-item lines="none">
+            <ion-label position="stacked"><ion-icon name="person"></ion-icon> Correo electronico</ion-label>
+            <ion-input
+              formControlName="email"
+              type="text"
+              placeholder="usuario123"
+            ></ion-input>
+          </ion-item>
+
+          <ng-container *ngFor="let error of error_msg.email">
+            <div *ngIf="userForm.get('email').hasError(error.type) && (userForm.get('email').dirty || userForm.get('email').touched)">
+              <ion-text class="error">{{ error.message }}</ion-text>
+            </div>
+          </ng-container>
+
+        </div>
+
+        <div class="ion-margin-vertical">
+          <ion-item lines="none">
+            <ion-label position="stacked"><ion-icon name="lock-closed"></ion-icon>Clave</ion-label>
+            <ion-input
+              formControlName="password"
+              type="password"
+              placeholder="••••••••"
+            ></ion-input>
+          </ion-item>
+
+          <ng-container *ngFor="let error of error_msg.password">
+            <div *ngIf="userForm.get('password').hasError(error.type) && (userForm.get('password').dirty || userForm.get('password').touched)">
+              <ion-text class="error">{{ error.message }}</ion-text>
+            </div>
+        </ng-container>
+
+        </div>
+
+        <ion-button size="large" expand="block" shape="round" color="secondary" type="submit" name="registerSubmit"  [disabled]="!userForm.valid">
+          <ion-text> Iniciar Sesion</ion-text>
+        </ion-button>
+        <label class="ion-text-center" class="error">{{errorMsg}}</label>
+      </form>
+    </ion-item-group>
+  </ion-list>
+</ion-footer>

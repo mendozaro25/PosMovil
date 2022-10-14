@@ -1,0 +1,63 @@
+ion-header{
+    ion-title{
+        font-weight: 720; 
+        text-align: center; 
+        color: white; 
+        font-family: system-ui; 
+        font-size: 15px; 
+        text-transform: uppercase
+    }
+    ion-back-button{
+        font-size: 12px;
+    }
+}
+
+ion-content{
+    --ion-background-color: #EFDEBD;
+    img{
+        height: 325px;
+        width: 325px;
+        margin: auto;
+        display: block;
+        margin-top: 8%;
+        margin-bottom: 8%;
+        border-top-left-radius: 25%;
+        border-color: #CCA354;
+        border-width: 5px;
+        border-style: solid;
+    }
+    .name_product{
+        font-weight: 700;
+        font-family: system-ui;
+        font-size: 20.2px;
+        margin-left: 9.2%;
+    }
+    .category{
+        font-weight: 400;
+        font-family: system-ui;
+        font-size: 14.3px;
+        margin-left: 9.2%;
+        font-style: italic;
+    }
+    .price{
+        font-weight: 400;
+        font-family: system-ui;
+        font-size: 16.3px;
+        margin-left: 9.2%;
+    }
+    .description{
+        font-weight: 400;
+        font-family: system-ui;
+        font-size: 16.3px;
+        margin-left: 9.2%;
+    }
+    ion-button{
+        width: 70%;
+        margin: auto;
+        ion-text{
+          font-family: system-ui;
+          font-weight: 700;
+          text-transform: uppercase;
+        }
+      }
+}

@@ -1,0 +1,26 @@
+<div class="quote-item">
+  <div>
+    <ion-img class="image" [src]="item.img"></ion-img>
+  </div>
+
+  <div class="description">
+    <h5>{{item.product_name}}</h5>
+    <p><sup>s/.</sup>{{item.retail_price | number: '1.2'}}</p>
+  </div>
+
+  <div class="actions">
+    <ion-buttons>
+      <ion-button (click)="increase.emit()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <div class="counter">{{item.quantity}}</div>
+
+    <ion-buttons>
+      <ion-button (click)="decrease.emit()">
+        <ion-icon slot="icon-only" name="remove"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </div>
+</div>

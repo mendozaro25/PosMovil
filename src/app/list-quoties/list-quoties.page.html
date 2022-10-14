@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>Cotizaciones</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <ion-searchbar
+    placeholder="Buscar..."
+    [(ngModel)]="searchTerm"
+    showCancelButton="focus"
+    cancelButtonText="Borrar"
+    animated
+    color="primary"
+  >
+  </ion-searchbar>
+
+  <ion-label class="number">{{quoties.length}}</ion-label
+  ><ion-label> cotizaciones encontradas</ion-label>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['../quote-item']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-item-sliding lines="none" *ngFor="let data of quoties; let i = index;">
+    <ion-item>
+      <ion-label class="name_product"
+        >Cliente: {{data[0].nameSocial}}
+        <ion-label class="category"
+          >N° documento: {{data[0].numberDocument}}
+          <ion-label class="category"
+            >Telefono: {{data[0].phone}}
+            <ion-label class="category"
+              >Tipo de documento: {{data[0].typeDocument}}
+            </ion-label>
+            <ion-label class="category"
+              >Precio Total: {{data[0].price}}
+            </ion-label>
+          </ion-label>
+        </ion-label>
+      </ion-label>
+    </ion-item>
+
+    <ion-item-options side="end">
+      <ion-item-option color="danger" (click)="delete(i)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-content>

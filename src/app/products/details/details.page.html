@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>{{product_name}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/products" text=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <img [src]='img' alt="thumbnail_product">
+  <div>
+    <ion-label class="name_product">
+      {{product_name}} <br>
+      <ion-label class="category">
+        {{category_name}} <br>
+        <ion-label class="price">
+          s/. {{retail_price}} <br>
+          <ion-label class="description">
+            {{description}}
+          </ion-label>
+        </ion-label>
+      </ion-label>
+    </ion-label>
+  </div>
+  <div>
+    <ion-button expand="full" shape="round" color="primary" (click)="addProductToQuote()">
+    <ion-text>Agregar a Cotizaciones</ion-text>
+  </ion-button>
+  </div>
+</ion-content>
