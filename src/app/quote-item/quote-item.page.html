@@ -37,11 +37,12 @@
           </ion-select>
         </ion-item>
 
-        <ion-item lines="none" class="number">
+        <ion-item lines="none" class="number" counter="true">
           <ion-label position="stacked">Número del documento (*)</ion-label>
           <ion-input
-            type="number"
+            type="text"
             placeholder="ejm. 72558745"
+            maxlength="11"
             formControlName="numberDocument"
           ></ion-input>
         </ion-item>
@@ -51,7 +52,7 @@
           <ion-input
             type="text"
             placeholder="ejm. Gran Power SAC"
-            maxlength="30"
+            maxlength="50"
             formControlName="nameSocial"
           ></ion-input>
         </ion-item>
@@ -59,10 +60,11 @@
         <ion-item lines="none" class="phone" counter="true">
           <ion-label position="stacked">Celular (*)</ion-label>
           <ion-input
-            type="number"
+            type="text"
             placeholder="ejm. 985614758"
             maxlength="9"
             formControlName="phone"
+            value="this.totalPrice$"
           ></ion-input>
         </ion-item>
         
@@ -77,6 +79,8 @@
         </ion-button>
       </form>
     </div>
+
+    
     <!-- END NULL QUOTE INPUTS-->
   </div>
   <!-- QUOTE INPUTS -->
@@ -84,7 +88,7 @@
   <!-- QUOTE ITEMS SEGMENTVALUE (2)-->
   <div *ngIf="segmentValue === '2'">
     <!-- PRICE TOTAL -->
-    <div *ngIf="(quoteItems$|async).length">
+    <div *ngIf="products.length">
       <h3 class="prices">
         Precio Total:
         <span><sup>s/.</sup>{{totalPrice$|async|number:'1.2'}}</span>
@@ -92,7 +96,7 @@
     </div>
     <!-- ITEMS -->
     <ion-list lines="none">
-      <div *ngFor="let item of quoteItems$|async">
+      <div *ngFor="let item of products">
         <ion-item-sliding>
           <ion-item>
             <app-item-quote
@@ -111,7 +115,7 @@
       </div>
     </ion-list>
     <!-- NULL QUOTE ITEMS-->
-    <div *ngIf="!(quoteItems$|async).length">
+    <div *ngIf="!products.length">
       <h3 class="title">No hay productos para cotizar...</h3>
       <ion-fab vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button routerLink="../products">

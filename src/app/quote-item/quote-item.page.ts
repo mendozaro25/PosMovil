@@ -15,9 +15,15 @@ export class QuoteItemPage implements OnInit {
 
   segmentValue = '1';
 
-  price: any = [];
-
   total: any;
+
+  products: any = [];
+
+  products2: any = [];
+
+  values: any = [];
+
+  phoneValue: any;
 
   private quoties: FormGroup;
 
@@ -34,7 +40,8 @@ export class QuoteItemPage implements OnInit {
     private toastController: ToastController,
     private crud: CrudCotizacionesService,
     private formBuilder: FormBuilder
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.quoties = this.formBuilder.group({
@@ -43,21 +50,40 @@ export class QuoteItemPage implements OnInit {
       nameSocial: ['', Validators.required],
       phone: ['', Validators.required]
     });
+
+    this.getQuoties();
+
     this.quoteItems$ = this.quoteService.getQuoties();
-    console.log(this.quoteItems$);
+    this.quoteItems$.subscribe(res => this.products = res);
+
+    this.quoteItems$.subscribe(pr => this.products2 = pr[0]);
+    console.log(this.products2);
+
     this.totalPrice$ = this.quoteService.getTotalPrice();
-    this.totalPrice$.subscribe(res => this.total = res)
+    this.totalPrice$.subscribe(res => this.total = res);
+  }
+
+  async getQuoties(){
+    this.values = await this.crud.getData();
   }
 
   async agregar() {
     const datos = [
       {
-        id: Math.floor(Math.random() * 100),
-        typeDocument: this.quoties.value.typeDocument,
-        numberDocument: this.quoties.value.numberDocument,
-        nameSocial: this.quoties.value.nameSocial,
-        phone: this.quoties.value.phone,
-        price: this.total
+        quote_id: "qt" + Math.random().toString(16).slice(2),
+        quote_typeDocument: this.quoties.value.typeDocument,
+        quote_numberDocument: this.quoties.value.numberDocument,
+        quote_nameSocial: this.quoties.value.nameSocial,
+        quote_phone: this.quoties.value.phone,
+        product_code: this.products2.code,
+        product_name: this.products2.product_name,
+        product_category: this.products2.category_name,
+        product_retail_price: this.products2.retail_price,
+        product_description: this.products2.description,
+        product_img: this.products2.img,
+        product_brand_name: this.products2.brand_name,
+        product_quantity: this.products2.quantity,
+        subTotal_quote: this.total
       },
     ];
     await this.crud.addData(datos);

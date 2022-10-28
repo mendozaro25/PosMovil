@@ -43,7 +43,10 @@ const routes: Routes = [
   {
     path: 'list-quoties',
     loadChildren: () => import('./list-quoties/list-quoties.module').then( m => m.ListQuotiesPageModule)
-  },
+  },  {
+    path: 'modal-quoties',
+    loadChildren: () => import('./modal-quoties/modal-quoties.module').then( m => m.ModalQuotiesPageModule)
+  }
 
 ];
 

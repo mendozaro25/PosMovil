@@ -1,7 +1,5 @@
 export class QuotePage {
-
   code: any;
-
   product_name: any;
   category_name: any;
   retail_price: any;
@@ -9,7 +7,5 @@ export class QuotePage {
   thumbnail: any;
   img: any;
   brand_name: any;
-  
   quantity: any;
-
 }

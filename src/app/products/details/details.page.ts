@@ -81,6 +81,6 @@ export class DetailsPage implements OnInit {
     };
     this.quoteService.addToQuote(quoteItem);
     this.presentToast();
-    console.log(quoteItem);
+    console.log('Product add to Quote', quoteItem);
   }
 }

@@ -8,7 +8,8 @@ import { map } from 'rxjs/operators';
 })
 export class QuoteService {
 
-  private items$ = new BehaviorSubject<QuotePage[]>([]);
+  private items$ = new BehaviorSubject<QuotePage[]>([
+  ]);
 
   getQuoties(){
     return this.items$.asObservable();

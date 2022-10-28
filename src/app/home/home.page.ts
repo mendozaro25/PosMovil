@@ -36,9 +36,6 @@ export class HomePage {
   }
 
   ngOnInit() {
-    this.quoteItems$ = this.quoteService.getQuoties();
-    console.log(this.quoteItems$);
-    this.listar();
   }
 
   async listar(){

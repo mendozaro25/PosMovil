@@ -28,18 +28,33 @@
   </ion-fab>
 
   <ion-item-sliding lines="none" *ngFor="let data of quoties; let i = index;">
+    <ion-item-options side="start">
+      <ion-item-option color="success">
+        <ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+
     <ion-item>
       <ion-label class="name_product"
-        >Cliente: {{data[0].nameSocial}}
+        >Cliente: {{data[0].quote_nameSocial}}
         <ion-label class="category"
-          >N° documento: {{data[0].numberDocument}}
+          >N° documento: {{data[0].quote_numberDocument}}
           <ion-label class="category"
-            >Telefono: {{data[0].phone}}
+            >Telefono: {{data[0].quote_phone}}
             <ion-label class="category"
-              >Tipo de documento: {{data[0].typeDocument}}
-            </ion-label>
-            <ion-label class="category"
-              >Precio Total: {{data[0].price}}
+              >Tipo de documento: {{data[0].quote_typeDocument}}
+              <ion-label class="category"
+                >Producto: {{data[0].product_name}}
+                <ion-label class="category"
+                  >Precio: {{data[0].product_retail_price}}
+                    <ion-label class="category"
+                      >Cantidad: {{data[0].product_quantity}}
+                      <ion-label class="category"
+                        >Sub Total: {{data[0].subTotal_quote}}
+                      </ion-label>
+                    </ion-label>
+                </ion-label>
+              </ion-label>
             </ion-label>
           </ion-label>
         </ion-label>
@@ -47,9 +62,14 @@
     </ion-item>
 
     <ion-item-options side="end">
+      <ion-item-option color="secondary" (click)="openModal()">
+        <ion-icon slot="icon-only" name="create"></ion-icon>
+      </ion-item-option>
+
       <ion-item-option color="danger" (click)="delete(i)">
         <ion-icon slot="icon-only" name="trash"></ion-icon>
       </ion-item-option>
     </ion-item-options>
   </ion-item-sliding>
+
 </ion-content>

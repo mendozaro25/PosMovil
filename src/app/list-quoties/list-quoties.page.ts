@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AlertController, ToastController } from '@ionic/angular';
+import { Component, ViewChild } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ModalQuotiesPage } from '../modal-quoties/modal-quoties.page';
+import { AlertController } from '@ionic/angular';
 import { CrudCotizacionesService } from '../services/crud-cotizaciones.service';
 
 @Component({
@@ -8,27 +9,40 @@ import { CrudCotizacionesService } from '../services/crud-cotizaciones.service';
   templateUrl: './list-quoties.page.html',
   styleUrls: ['./list-quoties.page.scss'],
 })
-export class ListQuotiesPage implements OnInit {
+export class ListQuotiesPage{
 
   searchTerm: string;
 
   quoties = [];
 
+  message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
+
   constructor(
     private crud: CrudCotizacionesService,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private modalCtrl: ModalController
   ) {
     this.getQuoties();
+    console.log(this.quoties);
    }
 
-  ngOnInit() {
-    
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: ModalQuotiesPage,
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirm') {
+      this.message = `Hello, ${data}!`;
+    }
   }
 
   async delete(index) {
     const alert = await this.alertCtrl.create({
       header: 'Eliminar',
-      message: '¿Estás seguro que deseas eliminar este producto?',
+      message: '¿Estás seguro que deseas eliminar esta cotización?',
       buttons: [
         {
         text: 'Si',

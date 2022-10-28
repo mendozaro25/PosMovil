@@ -19,7 +19,7 @@ export class CrudCotizacionesService {
   }
 
   getData(){
-    return this.storage.get(STORAGE_KEY) || [];
+    return this.storage.get(STORAGE_KEY);
   }
 
   async addData(item){
