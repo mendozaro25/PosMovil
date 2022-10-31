@@ -27,7 +27,7 @@
     </ion-fab-button>
   </ion-fab>
 
-  <ion-item-sliding lines="none" *ngFor="let data of quoties; let i = index;">
+  <ion-item-sliding lines="none" *ngFor="let data of quoties | filter: searchTerm; let i = index;">
     <ion-item-options side="start">
       <ion-item-option color="success">
         <ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
@@ -62,10 +62,6 @@
     </ion-item>
 
     <ion-item-options side="end">
-      <ion-item-option color="secondary" (click)="openModal()">
-        <ion-icon slot="icon-only" name="create"></ion-icon>
-      </ion-item-option>
-
       <ion-item-option color="danger" (click)="delete(i)">
         <ion-icon slot="icon-only" name="trash"></ion-icon>
       </ion-item-option>

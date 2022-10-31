@@ -12,7 +12,6 @@ import { QuoteService } from '../quote/quote.service';
   styleUrls: ['./quote-item.page.scss'],
 })
 export class QuoteItemPage implements OnInit {
-
   segmentValue = '1';
 
   total: any;
@@ -21,8 +20,6 @@ export class QuoteItemPage implements OnInit {
 
   products2: any = [];
 
-  values: any = [];
-
   phoneValue: any;
 
   private quoties: FormGroup;
@@ -30,47 +27,36 @@ export class QuoteItemPage implements OnInit {
   quoteItems$: Observable<QuotePage[]>;
   totalPrice$: Observable<number>;
 
-  customCounterFormatter(inputLength: number, maxLength: number) {
-    return `${maxLength - inputLength} caracteres restantes`;
-  }
-  
   constructor(
     private quoteService: QuoteService,
     private alertCtrl: AlertController,
     private toastController: ToastController,
     private crud: CrudCotizacionesService,
     private formBuilder: FormBuilder
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.quoties = this.formBuilder.group({
       typeDocument: ['', Validators.required],
       numberDocument: ['', Validators.required],
       nameSocial: ['', Validators.required],
-      phone: ['', Validators.required]
+      phone: ['', Validators.required],
     });
 
-    this.getQuoties();
-
     this.quoteItems$ = this.quoteService.getQuoties();
-    this.quoteItems$.subscribe(res => this.products = res);
+    this.quoteItems$.subscribe((res) => (this.products = res));
 
-    this.quoteItems$.subscribe(pr => this.products2 = pr[0]);
+    this.quoteItems$.subscribe((pr) => (this.products2 = pr[0]));
     console.log(this.products2);
 
     this.totalPrice$ = this.quoteService.getTotalPrice();
-    this.totalPrice$.subscribe(res => this.total = res);
-  }
-
-  async getQuoties(){
-    this.values = await this.crud.getData();
+    this.totalPrice$.subscribe((res) => (this.total = res));
   }
 
   async agregar() {
     const datos = [
       {
-        quote_id: "qt" + Math.random().toString(16).slice(2),
+        quote_id: 'qt' + Math.random().toString(16).slice(2),
         quote_typeDocument: this.quoties.value.typeDocument,
         quote_numberDocument: this.quoties.value.numberDocument,
         quote_nameSocial: this.quoties.value.nameSocial,
@@ -83,7 +69,7 @@ export class QuoteItemPage implements OnInit {
         product_img: this.products2.img,
         product_brand_name: this.products2.brand_name,
         product_quantity: this.products2.quantity,
-        subTotal_quote: this.total
+        subTotal_quote: this.total,
       },
     ];
     await this.crud.addData(datos);
