@@ -22,9 +22,17 @@
   ><ion-label> cotizaciones encontradas</ion-label>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button [routerLink]="['../quote-item']">
-      <ion-icon name="add"></ion-icon>
+    <ion-fab-button>
+      <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>
     </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="light" [routerLink]="['../quote-item']">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="cloud-upload"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
   </ion-fab>
 
   <ion-item-sliding lines="none" *ngFor="let data of quoties | filter: searchTerm; let i = index;">

@@ -6,7 +6,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 @Component({
   selector: 'app-song',
   templateUrl: './song.page.html',
-  styleUrls: ['./song.page.scss'],
 })
 export class SongPage implements OnInit {
   editForm: FormGroup;
