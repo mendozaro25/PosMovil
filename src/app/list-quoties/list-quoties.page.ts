@@ -1,7 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { ModalQuotiesPage } from '../modal-quoties/modal-quoties.page';
-import { AlertController } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { AlertController, ToastController } from '@ionic/angular';
 import { CrudCotizacionesService } from '../services/crud-cotizaciones.service';
 
 @Component({
@@ -20,24 +18,11 @@ export class ListQuotiesPage{
   constructor(
     private crud: CrudCotizacionesService,
     private alertCtrl: AlertController,
-    private modalCtrl: ModalController
+    private toastController: ToastController
   ) {
     this.getQuoties();
     console.log(this.quoties);
    }
-
-  async openModal() {
-    const modal = await this.modalCtrl.create({
-      component: ModalQuotiesPage,
-    });
-    modal.present();
-
-    const { data, role } = await modal.onWillDismiss();
-
-    if (role === 'confirm') {
-      this.message = `Hello, ${data}!`;
-    }
-  }
 
   async delete(index) {
     const alert = await this.alertCtrl.create({
@@ -54,6 +39,17 @@ export class ListQuotiesPage{
       ],
     });
     alert.present();
+  }
+
+  async upQuote() {
+    const toast = await this.toastController.create({
+      message: 'LA COTIZACIÓN SE SUBIÓ CORRECTAMENTE',
+      duration: 3000,
+      icon: 'checkmark-circle-sharp',
+      color: 'success',
+      position: 'bottom'
+    });
+    toast.present();
   }
 
   async getQuoties(){

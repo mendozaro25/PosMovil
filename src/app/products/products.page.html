@@ -22,7 +22,7 @@
   ><ion-label> productos encontrados</ion-label>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="updateListProducts()">
+    <ion-fab-button (click)="getProducts()">
       <ion-icon name="sync"></ion-icon>
     </ion-fab-button>
   </ion-fab>
@@ -31,8 +31,13 @@
     <ion-label class="name_product">
       {{p.product_name}}
       <ion-label class="category">
-        {{p.category_name}}
-        <ion-label class="price"> S/. {{p.retail_price}} </ion-label>
+        {{p.code}} 
+        <ion-label class="category">
+          {{p.category_name}}
+          <ion-label class="price"> 
+            S/. {{p.retail_price}} 
+          </ion-label>
+        </ion-label>
       </ion-label>
     </ion-label>
     <ion-button

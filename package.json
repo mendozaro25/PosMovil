@@ -22,7 +22,7 @@
     "@angular/router": "^14.0.0",
     "@awesome-cordova-plugins/firebase": "^5.46.0",
     "@awesome-cordova-plugins/sqlite": "^5.45.0",
-    "@capacitor/android": "4.3.0",
+    "@capacitor/android": "4.5.0",
     "@capacitor/app": "4.0.1",
     "@capacitor/core": "^4.3.0",
     "@capacitor/haptics": "4.0.1",

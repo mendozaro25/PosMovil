@@ -29,7 +29,7 @@
       <ion-fab-button color="light" [routerLink]="['../quote-item']">
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
-      <ion-fab-button color="light">
+      <ion-fab-button color="light" (click)="upQuote()">
         <ion-icon name="cloud-upload"></ion-icon>
       </ion-fab-button>
     </ion-fab-list>
@@ -37,7 +37,7 @@
 
   <ion-item-sliding lines="none" *ngFor="let data of quoties | filter: searchTerm; let i = index;">
     <ion-item-options side="start">
-      <ion-item-option color="success">
+      <ion-item-option color="success" (click)="upQuote()">
         <ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
       </ion-item-option>
     </ion-item-options>

@@ -17,10 +17,10 @@ export class ProductsService {
   }
 
   getProducts(){
-    return this.http.get('http://epos.test/api/movil/product');
+    return this.http.get('http://demo.gpw.cloud/api/movil/product');
   }
 
   getProductsById(code: string){
-    return this.http.get('http://epos.test/api/movil/productId/'+code);
+    return this.http.get('http://demo.gpw.cloud/api/movil/productId/'+code);
   }
 }

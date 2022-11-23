@@ -4,7 +4,7 @@ import { ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { CrudCotizacionesService } from '../services/crud-cotizaciones.service';
 import { QuotePage } from '../quote/quote.page';
-import { QuoteService } from '../quote/quote.service';
+import { ProductsService } from '../products/products.service';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +15,6 @@ export class HomePage {
 
   quoteItems$: Observable<QuotePage[]>;
 
-  products_api: any = [];
-
   quotes: any = [];
 
   listado = [];
@@ -26,11 +24,10 @@ export class HomePage {
   constructor(
     private router: Router,
     private toastController: ToastController,
-    private quoteService: QuoteService,
-    private crud: CrudCotizacionesService
+    private crud: CrudCotizacionesService,
+    private productsService: ProductsService
   ) {
-    this.products = JSON.parse(localStorage.getItem('productos'));
-    console.log(this.products);
+    this.getProducts();
     this.listar();
     console.log(this.listar);
   }
@@ -38,11 +35,16 @@ export class HomePage {
   ngOnInit() {
   }
 
-  async listar(){
-    this.listado = await this.crud.getData();
+  async getProducts() {
+    this.productsService.getProducts().subscribe((res: any) => {
+      console.log('Productos Sincronizados', res);
+      this.products = res;
+    }, (error: any) => {
+      console.log('Error', error);
+    });
   }
 
-  async ionViewWillEnter(){
+  async listar(){
     this.listado = await this.crud.getData();
   }
 
@@ -56,14 +58,5 @@ export class HomePage {
       color: 'secondary',
     });
     toast.present();
-  }
-
-  get_quotes(){
-    this.quoteService.getQuoties().subscribe((res: any) => {
-      this.quotes = res;
-      console.log('qa', this.quotes);
-    }, (error: any) => {
-      console.log('Error', error);
-    });
   }
 }

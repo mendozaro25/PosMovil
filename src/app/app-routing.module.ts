@@ -33,20 +33,9 @@ const routes: Routes = [
     loadChildren: () => import('./item-quote/item-quote.module').then( m => m.ItemQuoteModule)
   },
   {
-    path: 'song/:id',
-    loadChildren: () => import('./song/song.module').then( m => m.SongPageModule)
-  },
-  {
-    path: 'example-crud',
-    loadChildren: () => import('./example-crud/example-crud.module').then( m => m.ExampleCrudPageModule)
-  },
-  {
     path: 'list-quoties',
     loadChildren: () => import('./list-quoties/list-quoties.module').then( m => m.ListQuotiesPageModule)
-  },  {
-    path: 'modal-quoties',
-    loadChildren: () => import('./modal-quoties/modal-quoties.module').then( m => m.ModalQuotiesPageModule)
-  }
+  },
 
 ];
 

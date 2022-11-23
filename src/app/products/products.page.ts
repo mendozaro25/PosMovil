@@ -15,13 +15,11 @@ export class ProductsPage {
 
   products: any = [];
 
-  products_api: any = [];
-
   constructor(
     private productsService: ProductsService,
     private loadingCtrl: LoadingController
   ) {
-    this.showData();
+    this.getProducts();
   }
 
   ngOnInit() {}
@@ -35,24 +33,13 @@ export class ProductsPage {
     loading.present();
   }
 
-  async updateListProducts() {
+  async getProducts() {
+    this.showLoading();
     this.productsService.getProducts().subscribe((res: any) => {
-      console.log('Sitios Actualizados', res);
-      this.products_api = res;
-      localStorage.setItem('productos', JSON.stringify(this.products_api));
-      this.showData();
+      console.log('Productos Sincronizados', res);
+      this.products = res;
     }, (error: any) => {
       console.log('Error', error);
     });
-  }
-
-  clear(){
-    localStorage.removeItem('productos');
-  }
-
-  async showData(){
-    this.showLoading();
-    this.products = JSON.parse(localStorage.getItem('productos'));
-    console.log('Aqui esta el localStorage', this.products);
   }
 }
